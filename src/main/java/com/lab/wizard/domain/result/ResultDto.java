@@ -11,9 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ResultDto {
     private Long id;
-    private String patientPesel;
-    private String material;
-    private LocalDate receiveDate;
+    private Long undoneId;
     private String result;
     private String comment;
     private String employeeLicence;

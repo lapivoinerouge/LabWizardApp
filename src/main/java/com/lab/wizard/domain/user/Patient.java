@@ -1,6 +1,7 @@
 package com.lab.wizard.domain.user;
 
-import com.lab.wizard.domain.result.Result;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lab.wizard.domain.result.UndoneResult;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -52,15 +53,17 @@ public class Patient {
             cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY
     )
+    @JsonIgnore
     private List<UndoneResult> undoneResults;
 
-    @OneToMany(
-            targetEntity = Result.class,
-            mappedBy = "patient",
-            cascade = CascadeType.REMOVE,
-            fetch = FetchType.LAZY
-    )
-    private List<Result> doneResults;
+//    @OneToMany(
+//            targetEntity = Result.class,
+//            mappedBy = "patient",
+//            cascade = CascadeType.REMOVE,
+//            fetch = FetchType.LAZY
+//    )
+    //@JsonBackReference
+//    private List<Result> doneResults;
 
 
     @Override

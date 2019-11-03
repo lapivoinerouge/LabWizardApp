@@ -4,6 +4,7 @@ import com.lab.wizard.controller.exception.NotFoundException;
 import com.lab.wizard.domain.result.ResultDto;
 import com.lab.wizard.mapper.ResultMapper;
 import com.lab.wizard.service.ResultService;
+import com.lab.wizard.service.UndoneResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,9 @@ public class ResultController {
     @Autowired
     private ResultService service;
 
+    @Autowired
+    private UndoneResultService undoneResultService;
+
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public List<ResultDto> getResultList() {
         return mapper.mapToResultDtoList(service.getAllResults());
@@ -33,6 +37,7 @@ public class ResultController {
     @RequestMapping(method = RequestMethod.POST, value = "/")
     public void addResult(@RequestBody ResultDto resultDto) throws NotFoundException {
         service.saveResult(mapper.mapToResult(resultDto));
+        undoneResultService.deleteUndoneResult(resultDto.getUndoneId());
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")

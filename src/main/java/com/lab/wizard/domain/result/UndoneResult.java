@@ -1,6 +1,7 @@
 package com.lab.wizard.domain.result;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lab.wizard.domain.user.Patient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,7 @@ public class UndoneResult {
 
     @NotNull
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "patient_id")
     private Patient patient;
 

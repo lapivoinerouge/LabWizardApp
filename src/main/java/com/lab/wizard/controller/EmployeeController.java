@@ -1,0 +1,56 @@
+package com.lab.wizard.controller;
+
+import com.lab.wizard.controller.exception.NotFoundException;
+import com.lab.wizard.domain.user.EmployeeDto;
+import com.lab.wizard.mapper.EmployeeMapper;
+import com.lab.wizard.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@CrossOrigin(origins = "*")
+@RequestMapping(value = "/lab/employees", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+public class EmployeeController {
+
+    @Autowired
+    private EmployeeService employeeService;
+    @Autowired
+    private EmployeeMapper employeeMapper;
+
+    @RequestMapping(method = RequestMethod.GET, value = "/")
+    public List<EmployeeDto> getEmployees() {
+        return employeeMapper.mapToEmployeeDtoList(employeeService.getAllEmployees());
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public EmployeeDto getEmployee(@PathVariable Long id) throws NotFoundException {
+        return employeeMapper.mapToEmployeeDto(employeeService.getEmployeeById(id).orElseThrow(() -> new NotFoundException(id)));
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/")
+    public void addEmployee(@RequestBody EmployeeDto employeeDto) {
+        employeeService.saveEmployee(employeeMapper.mapToEmployee(employeeDto));
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/")
+    public void editEmployee(@RequestBody EmployeeDto employeeDto) throws NotFoundException {
+        if (employeeService.getEmployeeById(employeeDto.getId()).isPresent()) {
+            employeeMapper.mapToEmployeeDto(employeeService.saveEmployee(employeeMapper.mapToEmployee(employeeDto)));
+        } else {
+            throw new NotFoundException(employeeDto.getId());
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    public void deleteEmployee(@PathVariable Long id) throws NotFoundException {
+        try {
+            employeeService.deleteEmployee(id);
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
+    }
+
+}

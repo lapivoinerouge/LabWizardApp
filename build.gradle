@@ -13,12 +13,31 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	runtimeOnly('com.h2database:h2')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	compile('mysql:mysql-connector-java:8.0.17')
+
+	compileOnly 'org.projectlombok:lombok:1.18.8'
+	annotationProcessor 'org.projectlombok:lombok:1.18.8'
+//	compile ('org.springframework.boot:spring-boot-starter-web')
+//	compile ('org.springframework.boot:spring-boot-starter-data-jpa')
+////	compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+//
+//	//mysql
+//	compile('mysql:mysql-connector-java')
+//
+//
+//	//lombok
+//	compile ('org.projectlombok:lombok')
+//	annotationProcessor('org.projectlombok:lombok')
+//
+//	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+//		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+//	}
 }
 
-test {
-	useJUnitPlatform()
-}
+//test {
+//	useJUnitPlatform()
+//}

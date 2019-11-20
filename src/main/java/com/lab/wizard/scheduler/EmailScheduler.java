@@ -21,13 +21,11 @@ public class EmailScheduler {
     AdminConfig adminConfig;
 
     @Scheduled(cron = "0 0 18 * * *")
-//    @Scheduled(fixedDelay = 10000)
     public void sendInformationEmail() {
         long size = repository.countByDoneIsFalse();
         simpleEmailService.send(new Mail(
                 adminConfig.getAdminMail(),
                 SUBJECT,
-                size + " badań czeka na wykonanie."
-        ));
+                "Liczba badań czekających na wykonanie: " + size));
     }
 }

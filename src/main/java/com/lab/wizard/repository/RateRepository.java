@@ -1,6 +1,6 @@
 package com.lab.wizard.repository;
 
-import com.lab.wizard.domain.result.Result;
+import com.lab.wizard.domain.rating.Rate;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,16 +10,16 @@ import java.util.Optional;
 
 @Transactional
 @Repository
-public interface ResultRepository extends CrudRepository<Result, Long> {
+public interface RateRepository extends CrudRepository<Rate, Long> {
 
     @Override
-    List<Result> findAll();
+    List<Rate> findAll();
 
     @Override
-    Optional<Result> findById(Long id);
+    Optional<Rate> findById(Long id);
 
     @Override
-    Result save(Result result);
+    Rate save(Rate rate);
 
     @Override
     void deleteById(Long id);

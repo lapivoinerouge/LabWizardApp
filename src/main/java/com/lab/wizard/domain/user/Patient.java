@@ -1,10 +1,8 @@
 package com.lab.wizard.domain.user;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lab.wizard.domain.result.UndoneResult;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,38 +10,37 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "patients")
 public class Patient {
 
-    public Patient(@NotNull String firstname, @NotNull String lastname, String pesel, @NotNull String email, @NotNull String password) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.pesel = pesel;
-        this.email = email;
-        this.password = password;
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
+    @NonNull
     @Column(name = "firstname")
     private String firstname;
 
     @NotNull
+    @NonNull
     @Column(name = "lastname")
     private String lastname;
 
     @NotNull
+    @NonNull
     @Column(name = "pesel")
     private String pesel;
 
     @NotNull
+    @NonNull
     @Column(name = "email")
     private String email;
 
     @NotNull
+    @NonNull
     @Column(name = "password")
     private String password;
 
@@ -55,15 +52,6 @@ public class Patient {
     )
     @JsonIgnore
     private List<UndoneResult> undoneResults;
-
-//    @OneToMany(
-//            targetEntity = Result.class,
-//            mappedBy = "patient",
-//            cascade = CascadeType.REMOVE,
-//            fetch = FetchType.LAZY
-//    )
-    //@JsonBackReference
-//    private List<Result> doneResults;
 
 
     @Override

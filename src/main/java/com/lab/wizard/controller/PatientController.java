@@ -5,14 +5,13 @@ import com.lab.wizard.domain.user.PatientDto;
 import com.lab.wizard.mapper.PatientMapper;
 import com.lab.wizard.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/patients", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/lab")
 public class PatientController {
 
     @Autowired
@@ -20,27 +19,22 @@ public class PatientController {
     @Autowired
     private PatientMapper patientMapper;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/")
+    @GetMapping(value = "/patients")
     public List<PatientDto> getPatients() {
         return patientMapper.mapToPatientDtoList(patientService.getAllPatients());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @GetMapping(value = "/patients/{id}")
     public PatientDto getPatient(@PathVariable Long id) throws NotFoundException {
         return patientMapper.mapToPatientDto(patientService.getPatientById(id).orElseThrow(() -> new NotFoundException(id)));
     }
 
-//    @RequestMapping(method = RequestMethod.GET, value = "/p/{pesel}")
-//    public PatientDto getPatient(@PathVariable String pesel) throws NotFoundException {
-//        return patientMapper.mapToPatientDto(patientService.getPatientByPesel(pesel).orElseThrow(() -> new NotFoundException(0L)));
-//    }
-
-    @RequestMapping(method = RequestMethod.POST, value = "/")
+    @PostMapping(value = "/patients")
     public void addPatient(@RequestBody PatientDto patientDto) {
         patientService.savePatient(patientMapper.mapToPatient(patientDto));
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/")
+    @PutMapping(value = "/patients")
     public void editPatient(@RequestBody PatientDto patientDto) throws NotFoundException {
         if (patientService.getPatientById(patientDto.getId()).isPresent()) {
             patientMapper.mapToPatientDto(patientService.savePatient(patientMapper.mapToPatient(patientDto)));
@@ -49,7 +43,7 @@ public class PatientController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    @DeleteMapping(value = "/patients/{id}")
     public void deletePatient(@PathVariable Long id) throws NotFoundException {
         try {
             patientService.deletePatient(id);

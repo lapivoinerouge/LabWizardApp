@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class UndoneResult {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
@@ -35,4 +35,7 @@ public class UndoneResult {
     @Column(name = "receive_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate receiveDate;
+
+    @Column(name = "done")
+    private boolean done;
 }

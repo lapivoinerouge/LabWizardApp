@@ -12,6 +12,11 @@ import java.time.LocalDate;
 public class ResultDto {
     private Long id;
     private Long undoneId;
+    private String firstname;
+    private String lastname;
+    private String pesel;
+    private String material;
+    private LocalDate receiveDate;
     private String result;
     private String comment;
     private String employeeLicence;

@@ -1,5 +1,6 @@
 package com.lab.wizard.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lab.wizard.domain.result.Result;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,7 +34,7 @@ public class Employee {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
@@ -66,5 +67,6 @@ public class Employee {
             cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY
     )
+    @JsonIgnore
     private List<Result> results;
 }

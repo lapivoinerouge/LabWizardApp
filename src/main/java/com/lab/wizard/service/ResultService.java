@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ResultService {
@@ -16,6 +17,14 @@ public class ResultService {
 
     public List<Result> getAllResults() {
         return repository.findAll();
+    }
+
+    public List<Result> getAllByPesel(final String pesel) {
+        List<Result> listOfAll = repository.findAll();
+        List<Result> results = listOfAll.stream()
+                .filter(result -> result.getUndoneResult().getPatient().getPesel().equals(pesel))
+                .collect(Collectors.toList());
+        return results;
     }
 
     public Optional<Result> getResultById(final Long id) {

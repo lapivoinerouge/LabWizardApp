@@ -24,5 +24,5 @@ public interface UndoneResultRepository extends CrudRepository<UndoneResult, Lon
     @Override
     void deleteById(Long id);
 
-
+    long countByDoneIsFalse();
 }

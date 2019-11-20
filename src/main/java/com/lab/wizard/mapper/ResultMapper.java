@@ -34,6 +34,11 @@ public class ResultMapper {
         return new ResultDto(
                 result.getId(),
                 result.getUndoneResult().getId(),
+                result.getUndoneResult().getPatient().getFirstname(),
+                result.getUndoneResult().getPatient().getLastname(),
+                result.getUndoneResult().getPatient().getPesel(),
+                result.getUndoneResult().getMaterial(),
+                result.getUndoneResult().getReceiveDate(),
                 result.getResult(),
                 result.getComment(),
                 result.getEmployee().getLicence(),
@@ -44,7 +49,10 @@ public class ResultMapper {
 
     public List<ResultDto> mapToResultDtoList(final List<Result> results) {
         return results.stream()
-                .map(r -> new ResultDto(r.getId(), r.getUndoneResult().getId(), r.getResult(), r.getComment(), r.getEmployee().getLicence(), r.getFinishDate()))
+                .map(r -> new ResultDto(r.getId(), r.getUndoneResult().getId(), r.getUndoneResult().getPatient().getFirstname(),
+                        r.getUndoneResult().getPatient().getLastname(), r.getUndoneResult().getPatient().getPesel(),
+                        r.getUndoneResult().getMaterial(), r.getUndoneResult().getReceiveDate(), r.getResult(), r.getComment(),
+                        r.getEmployee().getLicence(), r.getFinishDate()))
                 .collect(Collectors.toList());
     }
 }

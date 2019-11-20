@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/lab/employees", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/lab")
 public class EmployeeController {
 
     @Autowired
@@ -20,22 +20,22 @@ public class EmployeeController {
     @Autowired
     private EmployeeMapper employeeMapper;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/")
+    @GetMapping(value = "/employees")
     public List<EmployeeDto> getEmployees() {
         return employeeMapper.mapToEmployeeDtoList(employeeService.getAllEmployees());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @GetMapping(value = "/employees/{id}")
     public EmployeeDto getEmployee(@PathVariable Long id) throws NotFoundException {
         return employeeMapper.mapToEmployeeDto(employeeService.getEmployeeById(id).orElseThrow(() -> new NotFoundException(id)));
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/")
+    @PostMapping(value = "/employees")
     public void addEmployee(@RequestBody EmployeeDto employeeDto) {
         employeeService.saveEmployee(employeeMapper.mapToEmployee(employeeDto));
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/")
+    @PutMapping(value = "/employees")
     public void editEmployee(@RequestBody EmployeeDto employeeDto) throws NotFoundException {
         if (employeeService.getEmployeeById(employeeDto.getId()).isPresent()) {
             employeeMapper.mapToEmployeeDto(employeeService.saveEmployee(employeeMapper.mapToEmployee(employeeDto)));
@@ -44,7 +44,7 @@ public class EmployeeController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    @DeleteMapping(value = "/employees/{id}")
     public void deleteEmployee(@PathVariable Long id) throws NotFoundException {
         try {
             employeeService.deleteEmployee(id);
@@ -52,5 +52,4 @@ public class EmployeeController {
             throw new NotFoundException(id);
         }
     }
-
 }

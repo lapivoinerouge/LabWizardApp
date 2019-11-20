@@ -4,6 +4,7 @@ import com.lab.wizard.domain.user.Patient;
 import com.lab.wizard.domain.user.PatientDto;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,11 +13,13 @@ public class PatientMapper {
 
     public Patient mapToPatient(final PatientDto dto) {
         return new Patient(
+                dto.getId(),
                 dto.getFirstname(),
                 dto.getLastname(),
                 dto.getPesel(),
                 dto.getEmail(),
-                dto.getPassword());
+                dto.getPassword(),
+                new ArrayList<>());
     }
 
     public PatientDto mapToPatientDto(final Patient patient) {

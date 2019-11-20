@@ -11,7 +11,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class UndoneResultDto {
     private Long id;
-    private String patientPesel;
+    private String firstname;
+    private String lastname;
+    private String pesel;
     private String material;
     private LocalDate receiveDate;
+    private boolean done;
 }

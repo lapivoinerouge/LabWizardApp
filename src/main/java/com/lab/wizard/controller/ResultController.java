@@ -92,4 +92,5 @@ public class ResultController {
             throw new NotFoundException(id);
         }
     }
+
 }

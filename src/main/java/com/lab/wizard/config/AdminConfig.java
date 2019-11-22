@@ -22,5 +22,4 @@ public class AdminConfig {
     private String refreshToken;
     @Value("\"https://www.googleapis.com/auth/calendar\"")
     private String scope;
-
 }

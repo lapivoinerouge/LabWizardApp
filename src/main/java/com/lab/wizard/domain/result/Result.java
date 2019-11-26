@@ -24,20 +24,6 @@ public class Result {
     @JoinColumn(name = "undone_id")
     private UndoneResult undoneResult;
 
-//    @NotNull
-//    @ManyToOne
-//    @JoinColumn(name = "patient_id")
-//    private Patient patient;
-//
-//    @NotNull
-//    @Column(name = "material")
-//    private String material;
-//
-//    @NotNull
-//    @Column(name = "receive_date")
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-//    private LocalDate receiveDate;
-
     @NotNull
     @Column(name = "result")
     private String result;

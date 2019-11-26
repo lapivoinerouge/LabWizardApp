@@ -15,5 +15,4 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     public void springHandleNotFound(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.NOT_FOUND.value());
     }
-
 }

@@ -38,5 +38,4 @@ public class ResultService {
     public void deleteResult(final Long id) {
         repository.deleteById(id);
     }
-
 }

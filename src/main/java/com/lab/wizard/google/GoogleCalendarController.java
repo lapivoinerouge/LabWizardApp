@@ -8,6 +8,7 @@ import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.lab.wizard.config.AdminConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ import com.google.api.services.calendar.model.Event;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@EnableAspectJAutoProxy
 public class GoogleCalendarController {
 
     private static final String APPLICATION_NAME = "LabWizardApp";
@@ -100,8 +102,6 @@ public class GoogleCalendarController {
                 .setApplicationName(APPLICATION_NAME).build();
         Calendar.Events events = client.events();
         events.insert(calendarId, event).execute();
-
-        System.out.println("Event created.");
     }
 
     public void setAccess() throws Exception {

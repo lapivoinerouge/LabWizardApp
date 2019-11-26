@@ -17,20 +17,6 @@ public class ResultMapperTest {
 
     private ResultMapper mapper = new ResultMapper();
 
-//    @Test
-//    public void testMapToTask() throws Exception{
-//        //given
-//        ResultDto resultDto = new ResultDto(1L, 1L, "firstname", "lastname", "pesel", "material", LocalDate.of(2019, 9, 11), "result", "comment", "licence", LocalDate.now());
-//
-//        //when
-//        Result result = mapper.mapToResult(resultDto);
-//
-//        //then
-//        assertEquals("licence", result.getEmployee().getLicence());
-//        assertEquals("comment", result.getComment());
-//        assertEquals("result", result.getResult());
-//    }
-
     @Test
     public void testMapToTaskDto() {
         //given

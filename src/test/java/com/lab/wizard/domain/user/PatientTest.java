@@ -32,5 +32,4 @@ public class PatientTest {
         assertEquals("firstname", patient.getFirstname());
         assertEquals("pesel", patient.getPesel());
     }
-
 }

@@ -18,7 +18,6 @@ public interface PatientRepository extends CrudRepository<Patient, Long> {
     @Override
     Optional<Patient> findById(Long id);
 
-    //find patient by pesel
     Optional<Patient> findByPesel(String pesel);
 
     @Override

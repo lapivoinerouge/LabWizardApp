@@ -16,20 +16,6 @@ public class UndoneResultMapperTest {
 
     private UndoneResultMapper mapper = new UndoneResultMapper();
 
-//    @Test
-//    public void testMapToTask() throws Exception{
-//        //given
-//        UndoneResultDto undoneResultDto = new UndoneResultDto(1L, "firstname", "lastname", "pesel", "material", LocalDate.of(2019, 9, 10), false);
-//
-//        //when
-//        UndoneResult undoneResult = mapper.mapToUndoneResult(undoneResultDto);
-//
-//        //then
-//        assertEquals("firstname", undoneResult.getPatient().getFirstname());
-//        assertEquals(LocalDate.of(2019, 9, 10), undoneResult.getReceiveDate());
-//        assertEquals(null, undoneResult.getPatient().getUndoneResults());
-//    }
-
     @Test
     public void testMapToTaskDto() {
         //given

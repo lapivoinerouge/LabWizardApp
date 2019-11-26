@@ -22,7 +22,6 @@ public class PatientService {
         return repository.findById(id);
     }
 
-    //find patient by pesel
     public Optional<Patient> getPatientByPesel(final String pesel) {
         return repository.findByPesel(pesel);
     }

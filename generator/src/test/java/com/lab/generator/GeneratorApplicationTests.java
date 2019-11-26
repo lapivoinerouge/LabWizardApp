@@ -1,10 +1,10 @@
-package com.auth.authorizationserverapplication;
+package com.lab.generator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AuthorizationServerApplicationTests {
+class GeneratorApplicationTests {
 
     @Test
     void contextLoads() {

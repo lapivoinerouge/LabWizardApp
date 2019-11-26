@@ -17,9 +17,10 @@ public class AdminConfig {
     private String redirectURI;
     @Value("Bearer")
     private String tokenType;
-    //REPLACE VALUE WITH REAL ONE
-    @Value("REFRESH TOKEN")
+    @Value("1//09BinzoaFidNlCgYIARAAGAkSNwF-L9Ir_ZGy2kWW_5zt2_eHBRAxPSKP_rFQSbnCg4eMSRihdXnWvL7_tLciqDthnbokUKucLT8")
     private String refreshToken;
-    @Value("\"https://www.googleapis.com/auth/calendar\"")
+    @Value("https://www.googleapis.com/auth/calendar")
     private String scope;
+    @Value("ENTER GENERATED ACCESS TOKEN")
+    private String accessToken;
 }

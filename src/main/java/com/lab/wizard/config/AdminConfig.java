@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Getter
 public class AdminConfig {
+    private static AdminConfig adminConfigInstance = null;
     @Value("${admin.mail}")
     private String adminMail;
     @Value("${google.client.client-id}")
@@ -23,4 +24,18 @@ public class AdminConfig {
     private String scope;
     @Value("ENTER GENERATED ACCESS TOKEN")
     private String accessToken;
+
+    private AdminConfig() {
+    }
+
+    public static AdminConfig getInstance() {
+        if (adminConfigInstance == null) {
+            synchronized (AdminConfig.class) {
+                if (adminConfigInstance == null) {
+                    adminConfigInstance = new AdminConfig();
+                }
+            }
+        }
+        return adminConfigInstance;
+    }
 }

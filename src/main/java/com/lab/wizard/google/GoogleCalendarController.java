@@ -44,7 +44,7 @@ public class GoogleCalendarController {
     Credential credential;
 
     @Autowired
-    private AdminConfig adminConfig;
+    private AdminConfig adminConfig = AdminConfig.getInstance();
 
     @RequestMapping(value = "/login/google", method = RequestMethod.GET)
     public ResponseEntity<String> oauth2Callback() throws Exception {
@@ -72,7 +72,6 @@ public class GoogleCalendarController {
         System.out.println("Calendar message:" + message);
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
-
 
     @RequestMapping(value = "/google/create", method = RequestMethod.POST)
     public void createEvent(@RequestBody CalendarEvent calendarEvent) throws Exception {

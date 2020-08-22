@@ -2,7 +2,10 @@ package com.lab.wizard.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lab.wizard.domain.result.UndoneResult;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
